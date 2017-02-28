@@ -13,8 +13,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CreateTaskComponent implements OnInit {
 
-  index: number;
 
+  index: string;
+  newTask:Task[];
   task: Task = new Task('', '', '', '', '');
 
   constructor(private service: TaskService,
@@ -22,31 +23,31 @@ export class CreateTaskComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe((data: any) => {
-      this.index = +data.indexSent;
-      if (this.index || this.index === 0) {
 
-        this.service.getData().subscribe((data: any) => {
-            this.task = data[this.index]
+      this.route.params.subscribe((data: any) => {
+        this.index = data.indexSent;
+        if (this.index) {
+          this.service.getData().subscribe(data => {
+              this.newTask = data;
+              this.task = this.newTask.filter((task: Task) => task._id === this.index)[0]
+            },
+            (err: any) => alert(err), () => {
+              console.log("Success");
+            });
+        }
 
-          },
-          (err: any) => alert(err), () => {
-            console.log("Success");
-          });
-      }
     });
+
   }
 
-  submit() {
-    if (this.index || this.index === 0) {
 
-      this.service.updateTask(this.task).subscribe()
-    } else
-      {
-      this.service.addTask(this.task).subscribe()
-        this.router.navigate(['show']);
+    submit() {
+      if (this.index) {
+        this.service.updateTask(this.task).subscribe((data:any)=>alert(JSON.stringify(data)));
+      } else {
+        this.service.addTask(this.task).subscribe((data:any)=>alert(JSON.stringify(data)))
+        this.router.navigate(['ShowTask']);
+      }
+
     }
-
-
-  }
 }

@@ -10,7 +10,7 @@ export const routes: Routes = [ {
   path: 'show',
   component: ShowTaskComponent
 },{
-  path : 'create/:index',
+  path : 'create/:indexSent'    ,
   component: CreateTaskComponent
 },
 

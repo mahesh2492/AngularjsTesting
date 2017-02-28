@@ -1,6 +1,6 @@
 <br><br>
-<form (ngSubmit)="submit()">
-  <input type="date" required class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="task.date" name="date" #date="ngModel" ><br>
+<form #formVariable='ngForm' (ngSubmit)="submit()">
+  <input type="date" required class="form-control" #spy1 placeholder="dd/mm/yyyy" [(ngModel)]="task.date" name="date" #date="ngModel" ><br>
   <input type="text" required class="form-control" placeholder="Title" [(ngModel)]="task.title" name="title" #title="ngModel"><br>
   <input type="text" required  class="form-control" placeholder="Description" [(ngModel)]="task.description" name="description" #description="ngModel"><br>
   <select [(ngModel)]="task.priority" name="priority" #priority="ngModel"  >
