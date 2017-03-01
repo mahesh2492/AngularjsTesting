@@ -11,7 +11,7 @@ import {HttpModule} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/of";
 
-describe('ShowComponent', function () {
+describe('ShowTaskComponent', function () {
   let de: DebugElement;
   let comp: ShowTaskComponent;
   let fixture: ComponentFixture<ShowTaskComponent>;
