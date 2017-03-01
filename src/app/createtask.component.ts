@@ -41,13 +41,27 @@ export class CreateTaskComponent implements OnInit {
   }
 
 
-    submit() {
-      if (this.index) {
-        this.service.updateTask(this.task).subscribe((data:any)=>alert(JSON.stringify(data)));
-      } else {
-        this.service.addTask(this.task).subscribe((data:any)=>alert(JSON.stringify(data)))
-        this.router.navigate(['ShowTask']);
-      }
+  submit() {
+    if (this.index) {
+      this.service.updateTask(this.task).subscribe((data: any) =>//alert(JSON.stringify(data)));
+        {
+          alert('Task is successfully updated')
+          this.router.navigate(['ShowTask']);
+        },
+        err => {
+          console.error(err);
+        })
+
+    } else {
+      this.service.addTask(this.task).subscribe((data: any) =>//alert(JSON.stringify(data)))
+        {
+          alert('Task is successfully added')
+          this.router.navigate(['ShowTask']);
+        },
+        err => {
+          console.error(err);
+        })
 
     }
+  }
 }
