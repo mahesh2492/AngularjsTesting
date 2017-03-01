@@ -79,7 +79,7 @@ describe('CreateTaskComponent', function () {
 
   });
 
-  it('it should be able to generate error in case of on data to update', () => {
+  it('it should be able to generate an error in case of data not updated', () => {
     comp.index = '0';
     spyOn(console,'error');
     spyOn(service, 'updateTask').and.returnValue(
